@@ -87,15 +87,14 @@ class FileTool:
         with open("new.json",'w') as jsonFile:
             jsonFile.write(json.dumps(data, indent=4))
     
-    def search(self): # not working:/
-        keyword = "doe"
-        with open(self.path) as csv_file:
+    def search(self):
+        keyword = str(input("Please enter a search keyword: "))
+        with open(self.path, 'r') as csv_file:
             csv_reader=csv.reader(csv_file,delimiter=',')
             for row in csv_reader:
-                a = row
-                if keyword in str(row):
-                    print(a)
-                break
+                if keyword.lower() in row[0].lower(): #looks for first field only
+                    print(row)
+                
 
 p = FileTool("addresses.csv",["a","b","c"])
     
